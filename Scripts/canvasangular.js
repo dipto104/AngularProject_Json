@@ -49,10 +49,36 @@ var app = angular.module("demo", []);
 			
 			var ctx = c.getContext("2d");
 			ctx.clearRect(0, 0, cwidth, cheight);
-
+			var maxwidth=0;
 			for(var i=0;i<json.length;i++){
 				ctx.font = 'italic 32px sans-serif';
-				ctx.fillText(json[i].status, 100, 100*(i+1)); 
+				var strings=json[i].status+"("+json[i].value+")";
+				
+				//console.log(ctx.measureText(strings).width);
+				if(ctx.measureText(strings).width>maxwidth){
+					maxwidth=ctx.measureText(strings).width;
+					
+				} 
+				ctx.fillText(strings, 100, 100*(i+1));
+
+			}
+			console.log(maxwidth);
+			
+
+			var barsize=25;
+			var nbar=0;
+			var vpix=80;
+			for(var i=0;i<json.length;i++){
+				var hpix=maxwidth+100+5;
+				
+				var value=parseInt(json[i].value);
+				nbar=value/barsize;
+				nbar=parseInt(nbar);
+				for(var j=0;j<nbar;j++){
+					ctx.fillRect(hpix,vpix,25,25);
+					hpix+=50;
+				}
+				vpix+=100;
 			}
 			/*var subi=2,flag=0;
 				for(var i = 1; i<=2*n-1; i++){
