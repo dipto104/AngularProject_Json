@@ -33,7 +33,7 @@ var app = angular.module("demo", []);
 		   $scope.printStars = function() {
 			
 			var json=JSON.parse(JSON.stringify($scope.datainput));
-			console.log(json[0].status);
+			//console.log(json[0].status);
 
 			var n = $scope.givenNumber;
 
@@ -51,17 +51,17 @@ var app = angular.module("demo", []);
 			ctx.clearRect(0, 0, cwidth, cheight);
 			var maxwidth=0;
 			var maxvalue=0;
-			for(var i=0;i<json.length;i++){
+			for(var i=0;i<json.length;i++){//printing the status and value member of json
 				ctx.font = 'italic 32px sans-serif';
 				var strings=json[i].status+"("+json[i].value+")";
 				
-				//console.log(ctx.measureText(strings).width);
+			
 				if(ctx.measureText(strings).width>maxwidth){
 					maxwidth=ctx.measureText(strings).width;
 					
 				} 
 				if(json[i].value>maxvalue){
-					maxvalue=json[i].value;
+					maxvalue=json[i].value;      //updating the max value of json
 				}
 				ctx.fillText(strings, 100, 100*(i+1));
 
@@ -69,20 +69,20 @@ var app = angular.module("demo", []);
 			//console.log(maxwidth);
 			
 			maxvalue=maxvalue+maxvalue;
-			var barsize=25;
-			var nbar=0;
-			var vpix=80;
-			var scaleing=1;
+			var barsize=25;         //size of the small bar
+			var nbar=0;				//number of bar
+			var vpix=80;			//vertical start pixel at for bar
+			var scaleing=1;         //scaling number for dynamic page
 			if(maxvalue>c.width){
-				 scaleing=maxvalue/c.width;
+				 scaleing=maxvalue/c.width;			
 			}
 			
 			console.log(scaleing);
 			for(var i=0;i<json.length;i++){
-				var hpix=maxwidth+100+5;
+				var hpix=maxwidth+100+5; //horizontal pixel start at for bar
 				
 				var value=parseInt(json[i].value);
-				nbar=(value/barsize)/scaleing;
+				nbar=(value/barsize)/scaleing; //number of required bar
 				nbar=parseInt(nbar);
 				for(var j=0;j<nbar;j++){
 					ctx.fillRect(hpix,vpix,25,25);
