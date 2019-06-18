@@ -66,24 +66,27 @@ var app = angular.module("demo", []);
 				ctx.fillText(strings, 100, 100*(i+1));
 
 			}
-			//console.log(maxwidth);
 			
-			maxvalue=maxvalue+maxvalue;
+			
+			maxvalue=maxvalue+maxvalue+maxwidth+100+5;
+			
 			var barsize=25;         //size of the small bar
 			var nbar=0;				//number of bar
 			var vpix=80;			//vertical start pixel at for bar
 			var scaleing=1;         //scaling number for dynamic page
 			if(maxvalue>c.width){
-				 scaleing=maxvalue/c.width;			
+				 scaleing=maxvalue/(c.width-maxwidth-100-5);			
 			}
 			
-			console.log(maxvalue);
+			//console.log(maxvalue);
+			console.log(scaleing);
 			for(var i=0;i<json.length;i++){
 				var hpix=maxwidth+100+5; //horizontal pixel start at for bar
 				
-				var value=parseInt(json[i].value);
-				nbar=(value/barsize)/scaleing; //number of required bar
+				var value=Number(json[i].value) ;
+				nbar=((value)/barsize)/scaleing; //number of required bar
 				nbar=parseInt(nbar);
+				console.log(nbar)
 				for(var j=0;j<nbar;j++){
 					ctx.fillRect(hpix,vpix,25,25);
 					hpix+=50;
