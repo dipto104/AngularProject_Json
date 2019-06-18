@@ -1,5 +1,8 @@
 [
-{"type":"fontname","value":"Courier New"},
-{"type":"fontsize","value":"20px"},
-{"type":"fontstyle","value":"bold"}
+{"type":"font_name","value":"Courier New"},
+{"type":"font_size","value":"20px"},
+{"type":"font_style","value":"normal"},
+{"type":"canvas_height","value":"1000"},
+{"type":"canvas_width","value":"10000"},
+{"type":"background_color","value":"red"}
 ]

@@ -60,16 +60,18 @@ var app = angular.module("demo", []);
 
 			$scope.bcchange=function(){
 				var color=$scope.bcname;
+				var jsonconfig=JSON.parse(JSON.stringify($scope.dataconfig));
+				console.log(jsonconfig[5].value);
 
 				$scope.mybody = {
 				
-					"background-color" : $scope.bcname
+					"background-color" : jsonconfig[5].value
 					//"background-image": "Img/Back1.jpg"
 					
 				}
 			}
 
-			$scope.changefont=function(){
+			/*$scope.changefont=function(){
 				$scope.mybody = {
 				
 					"font" : " 15px sans-serif",
@@ -77,32 +79,41 @@ var app = angular.module("demo", []);
 					
 				}
 				console.log("fontclick");
-			}
+			}*/
 			
 
-		   $scope.printStars = function() {
+		   $scope.changefont = function() {
 			
 			var json=JSON.parse(JSON.stringify($scope.datainput));
 
 			var jsonconfig=JSON.parse(JSON.stringify($scope.dataconfig));
+
+			$scope.mybody = {
+				
+				"background-color" : jsonconfig[5].value
+				//"background-image": "Img/Back1.jpg"
+				
+			}
 			
 			//var json=JSON.parse($scope.datainput);
 			//console.log(json[0].status);
 
 			var n = $scope.givenNumber;
 
-			var cheight=$scope.height;
-			var cwidth=$scope.width;
+			var cheight=jsonconfig[3].value;
+			var cwidth=jsonconfig[4].value;
 
 			$scope.rows = [];
 			  
 			  
 			var c = document.getElementById("myCanvas");
-			c.width=$scope.width;
-			c.height=$scope.height;
+			c.width=cwidth;
+			c.height=cheight;
 			
 			var ctx = c.getContext("2d");
 			ctx.clearRect(0, 0, cwidth, cheight);
+			console.log(cwidth);
+			console.log(cheight);
 
 			/*var background = new Image();
 			background.src = "Img/Back1.jpg";
@@ -134,7 +145,7 @@ var app = angular.module("demo", []);
 			}
 			
 			
-			maxvalue=maxvalue+maxvalue+maxwidth+100+5;
+			maxvalue=maxvalue+maxvalue+maxwidth+100+5;//maxvalue is the higest range of pixel of bar
 			
 			var barsize=25;         //size of the small bar
 			var nbar=0;				//number of bar
