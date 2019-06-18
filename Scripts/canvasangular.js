@@ -3,6 +3,7 @@ var app = angular.module("demo", []);
 		   $scope.temp = "";
 		   $scope.rows = []; // init empty array
 		   $scope.datainput =[];
+		   $scope.dataconfig =[];
 
 		   $scope.colornames = ["AliceBlue ",
 								"Aqua", 
@@ -25,7 +26,9 @@ var app = angular.module("demo", []);
 		}).then(function (data){
 		$scope.datainput=data.data;
 		console.log($scope.datainput);
-
+		},function (error){
+		console.log("big error");
+		});
 
 		/*datatemp=[
 			{status:"payfail",value:500},
@@ -36,11 +39,15 @@ var app = angular.module("demo", []);
 		];*/
 
 		//$scope.datainput=datatemp;
-		
 
-		
+		$http({
+			method: 'GET',
+			url: 'Data/config.json'
+		}).then(function (config){
+		$scope.dataconfig=config.data;
+		console.log($scope.datainput);
 		},function (error){
-		console.log("big error");
+		console.log("config error");
 		});
 
 
@@ -57,14 +64,28 @@ var app = angular.module("demo", []);
 				$scope.mybody = {
 				
 					"background-color" : $scope.bcname
+					//"background-image": "Img/Back1.jpg"
 					
 				}
+			}
+
+			$scope.changefont=function(){
+				$scope.mybody = {
+				
+					"font" : " 15px sans-serif",
+					"background-color" : $scope.bcname
+					
+				}
+				console.log("fontclick");
 			}
 			
 
 		   $scope.printStars = function() {
 			
 			var json=JSON.parse(JSON.stringify($scope.datainput));
+
+			var jsonconfig=JSON.parse(JSON.stringify($scope.dataconfig));
+			
 			//var json=JSON.parse($scope.datainput);
 			//console.log(json[0].status);
 
@@ -82,10 +103,22 @@ var app = angular.module("demo", []);
 			
 			var ctx = c.getContext("2d");
 			ctx.clearRect(0, 0, cwidth, cheight);
+
+			/*var background = new Image();
+			background.src = "Img/Back1.jpg";
+			
+			// Make sure the image is loaded first otherwise nothing will draw.
+			background.onload = function(){
+				ctx.drawImage(background,0,0);   
+			}*/
+
+
 			var maxwidth=0;
 			var maxvalue=0;
 			for(var i=0;i<json.length;i++){//printing the status and value member of json
-				ctx.font = 'italic 32px sans-serif';
+				var tempfont=jsonconfig[2].value+' '+jsonconfig[1].value+' '+jsonconfig[0].value;
+				ctx.font = tempfont;
+				
 				var strings=json[i].status+"("+json[i].value+")";
 				
 			

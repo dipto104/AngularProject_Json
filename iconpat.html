@@ -23,31 +23,33 @@
 <body >
 	
 	<div>
-  <div class="flex-control-nav" >
-  	 <!-- <label for="number">Number</label>
-     <input class="form-control" type="number" id="number" ng-model="givenNumber" ng-change="printStars()"> -->
+      <div class="flex-control-nav" >
+        <!-- <label for="number">Number</label>
+        <input class="form-control" type="number" id="number" ng-model="givenNumber" ng-change="printStars()"> -->
 
-     <label for="width">Width</label>
-     <input class="form-control" type="number" id="width" ng-model="width" ng-change="printStars()">
+        <label for="width">Width</label>
+        <input class="form-control" type="number" id="width" ng-model="width" ng-change="printStars()">
 
-	   <label for="height">Height</label>
-     <input class="form-control" type="number" id="height" ng-model="height" ng-change="printStars()">
-    
-     
-     <button type="button" id="btn" ng-click="refresh()">Refresh</button>
-     
-     <label for="height">Background Color</label>
-     <select ng-model="bcname" ng-change="bcchange()" ng-options="x for x in colornames">
-    </select>
+        <label for="height">Height</label>
+        <input class="form-control" type="number" id="height" ng-model="height" ng-change="printStars()">
+        
+        
+        <button type="button" id="btn" ng-click="refresh()">Refresh</button>
+        
+        <label for="height">Background Color</label>
+        <select ng-model="bcname" ng-change="bcchange()" ng-options="x for x in colornames">
+        </select>
+        <button type="button" id="btn" ng-click="changefont()">Font</button>
 
-    
-    
-     <div>
-     	<canvas ng-style="mybody" id="myCanvas"  style="border:1px solid #d3d3d3;">
-		Your browser does not support the HTML5 canvas tag.</canvas>
-     </div>
-      
-  </div>
+        
+        
+        <div>
+          <canvas ng-style="mybody" id="myCanvas"  style="border:1px solid #d3d3d3;">
+          Your browser does not support the HTML5 canvas tag.
+              <canvas ng-style="mybody2" id="myCanvas2"  style="border:1px solid #d3d3d3;"></canvas>
+          </canvas>
+      </div>
+      </div>
  
  
 </div>
