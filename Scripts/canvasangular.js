@@ -28,7 +28,9 @@ var app = angular.module("demo", []);
 		
 		
 
-
+			$scope.refresh = function(){
+				location.reload();
+			}
 
 		   $scope.printStars = function() {
 			
