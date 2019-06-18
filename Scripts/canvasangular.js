@@ -60,8 +60,8 @@ var app = angular.module("demo", []);
 					maxwidth=ctx.measureText(strings).width;
 					
 				} 
-				if(json[i].value>maxvalue){
-					maxvalue=json[i].value;      //updating the max value of json
+				if(Number(json[i].value)>maxvalue){
+					maxvalue=Number(json[i].value);      //updating the max value of json
 				}
 				ctx.fillText(strings, 100, 100*(i+1));
 
@@ -77,7 +77,7 @@ var app = angular.module("demo", []);
 				 scaleing=maxvalue/c.width;			
 			}
 			
-			console.log(scaleing);
+			console.log(maxvalue);
 			for(var i=0;i<json.length;i++){
 				var hpix=maxwidth+100+5; //horizontal pixel start at for bar
 				
