@@ -3,6 +3,20 @@ var app = angular.module("demo", []);
 		   $scope.temp = "";
 		   $scope.rows = []; // init empty array
 		   $scope.datainput =[];
+
+		   $scope.colornames = ["AliceBlue ",
+								"Aqua", 
+								"Azure",
+								"Aquamarine",
+								"Red",
+								"Blue",
+								"Beige",
+								"CornflowerBlue ",
+								"Coral",
+								"DarkBlue ",
+								"DarkCyan ", 
+								"DarkSalmon ",
+								];
 	
 
 		$http({
@@ -13,11 +27,16 @@ var app = angular.module("demo", []);
 		console.log($scope.datainput);
 
 
-	
-		//console.log($scope.datainput);
+		/*datatemp=[
+			{status:"payfail",value:500},
+			{status:"payinit",value:250},
+			{status:"paysuccess",value:1000},
+			{status:"payreturn",value:50}
+			
+		];*/
 
-		//var json=JSON.parse(JSON.stringify($scope.datainput));
-		//console.log(json[0].status);
+		//$scope.datainput=datatemp;
+		
 
 		
 		},function (error){
@@ -32,9 +51,21 @@ var app = angular.module("demo", []);
 				location.reload();
 			}
 
+			$scope.bcchange=function(){
+				var color=$scope.bcname;
+
+				$scope.mybody = {
+				
+					"background-color" : $scope.bcname
+					
+				}
+			}
+			
+
 		   $scope.printStars = function() {
 			
 			var json=JSON.parse(JSON.stringify($scope.datainput));
+			//var json=JSON.parse($scope.datainput);
 			//console.log(json[0].status);
 
 			var n = $scope.givenNumber;

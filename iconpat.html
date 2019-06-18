@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body >
 	
 	<div>
   <div class="flex-control-nav" >
@@ -35,20 +35,15 @@
     
      
      <button type="button" id="btn" ng-click="refresh()">Refresh</button>
-     <!--<div ng-repeat="x in rows">
-        <div ng-repeat="y in x"  class="row">
-          <h1 class="fa fa-star"  ></h1>
-        </div>
-     </div>
+     
+     <label for="height">Background Color</label>
+     <select ng-model="bcname" ng-change="bcchange()" ng-options="x for x in colornames">
+    </select>
 
-	 
-	 <div ng-repeat="x in rows2" class="row2">
-        <div ng-repeat="y in x"  >
-          <h1 class="fa fa-star"  ></h1>
-        </div>
-     </div>-->
+    
+    
      <div>
-     	<canvas id="myCanvas"  style="border:1px solid #d3d3d3;">
+     	<canvas ng-style="mybody" id="myCanvas"  style="border:1px solid #d3d3d3;">
 		Your browser does not support the HTML5 canvas tag.</canvas>
      </div>
       
