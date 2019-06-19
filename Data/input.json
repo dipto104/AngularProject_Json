@@ -1,7 +1,7 @@
 [
     {"status":"payfail","value":"100"},
     {"status":"payinit","value":"75"},
-    {"status":"paysuccess","value":"50"},
-    {"status":"payreturn","value":"500"}
+    {"status":"paysuccess","value":"350"},
+    {"status":"payreturn","value":"700"}
     
 ]
