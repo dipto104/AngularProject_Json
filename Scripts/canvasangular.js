@@ -126,6 +126,8 @@ var app = angular.module("demo", []);
 
 			var maxwidth=0;
 			var maxvalue=0;
+			ctx.scale(cwidth/1920,cheight/1080);
+
 			for(var i=0;i<json.length;i++){//printing the status and value member of json
 				var tempfont=jsonconfig[2].value+' '+jsonconfig[1].value+' '+jsonconfig[0].value;
 				ctx.font = tempfont;
@@ -152,7 +154,7 @@ var app = angular.module("demo", []);
 			var vpix=80;			//vertical start pixel at for bar
 			var scaleing=1;         //scaling number for dynamic page
 			if(maxvalue>c.width){
-				 scaleing=maxvalue/(c.width-maxwidth-100-5);			
+				 scaleing=maxvalue/(1920-maxwidth-100-5);			
 			}
 			
 			//console.log(maxvalue);
@@ -161,6 +163,7 @@ var app = angular.module("demo", []);
 				var hpix=maxwidth+100+5; //horizontal pixel start at for bar
 				
 				var value=Number(json[i].value) ;
+				//scaleing=1;
 				nbar=((value)/barsize)/scaleing; //number of required bar
 				nbar=parseInt(nbar);
 				console.log(nbar)
