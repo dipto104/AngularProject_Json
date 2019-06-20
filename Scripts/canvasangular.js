@@ -194,17 +194,42 @@ var app = angular.module("demo", []);
 			//console.log("hello "+maxhorlength);
 			verlegth=vpix-80+50;
 
-			if(jsonconfig[6].value=="left"){
+			if(jsonconfig[6].value=="centerleft"){
 				newx=-100;
+				newy=(1080-verlegth)/2;
 			}
 			else if(jsonconfig[6].value=="center"){
 				newx=(1920-maxhorlength)/2;
+				newy=(1080-verlegth)/2;
 			}
-			else if(jsonconfig[6].value=="right"){
+			else if(jsonconfig[6].value=="centerright"){
 				newx=1920-maxhorlength+80;
+				newy=(1080-verlegth)/2;
 			}
+
+			else if(jsonconfig[6].value=="topleft"){
+				newx=-100;
+				newy=-50;
+			}
+			else if(jsonconfig[6].value=="topright"){
+				newx=1920-maxhorlength+80;;
+				newy=-50;
+			}
+			else if(jsonconfig[6].value=="bottomleft"){
+				newx=-100;
+				newy=1080-verlegth+20;
+			}
+			else if(jsonconfig[6].value=="bottomright"){
+				newx=1920-maxhorlength+80;;
+				newy=1080-verlegth+20;
+			}
+
+
+			
+
+
 			//newx=(1920-maxhorlength)/2
-			newy=(1080-verlegth)/2;
+			//newy=(1080-verlegth)/2;
 		}
 			
 			console.log(verlegth);
