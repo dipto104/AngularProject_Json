@@ -22,7 +22,7 @@ var app = angular.module("demo", []);
 
 		$http({
 			method: 'GET',
-			url: 'Data/input.json'
+			url: 'http://localhost:5000/database'
 		}).then(function (data){
 		$scope.datainput=data.data;
 		console.log($scope.datainput);
@@ -45,7 +45,7 @@ var app = angular.module("demo", []);
 			url: 'Data/config.json'
 		}).then(function (config){
 		$scope.dataconfig=config.data;
-		console.log($scope.datainput);
+		//console.log($scope.datainput);
 		},function (error){
 		console.log("config error");
 		});
@@ -56,6 +56,8 @@ var app = angular.module("demo", []);
 
 			$scope.refresh = function(){
 				location.reload();
+
+				
 			}
 
 			$scope.bcchange=function(){
@@ -83,7 +85,6 @@ var app = angular.module("demo", []);
 			
 			
 		   $scope.changefont = function() {
-			
 				var json=JSON.parse(JSON.stringify($scope.datainput));
 
 				var jsonconfig=JSON.parse(JSON.stringify($scope.dataconfig));

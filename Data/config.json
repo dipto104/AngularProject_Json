@@ -2,8 +2,8 @@
 {"type":"font_name","value":"Courier New"},
 {"type":"font_size","value":"50px"},
 {"type":"font_style","value":"normal"},
-{"type":"canvas_height","value":"400"},
-{"type":"canvas_width","value":"400"},
+{"type":"canvas_height","value":"800"},
+{"type":"canvas_width","value":"800"},
 {"type":"background_color","value":"aqua"},
 {"type":"alignment","value":"center"}
 ]

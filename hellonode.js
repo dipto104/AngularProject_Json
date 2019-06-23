@@ -12,7 +12,7 @@ const server = http.createServer((req, res) => {
   res.end('Hello World\n');
 
   app.get('/', function (req, res) {
-  res.send('boss dipto')
+  res.send('dipto')
   })
 
 });
@@ -46,7 +46,69 @@ app.use('/Data', express.static(__dirname + '/Data'));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/iconpat.html');
+});
 
+
+app.get('/database', function (req, res) {
+ // res.end('Hello boss!');
+
+
+  var sql = require("mssql");
+
+    // config for your database
+    var config = {
+        user: 'sa',
+        password: '12345',
+        server: 'DESKTOP-AEA02TQ', 
+        database: 'Testdb' 
+    };
+
+    // connect to your database
+    sql.connect(config, function (err) {
+    
+        if (err) console.log(err);
+
+        // create Request object
+        var request = new sql.Request();
+           
+        // query to the database and get the records
+        request.query('select * from Datainput', function (err, recordset) {
+            
+            if (err) console.log(err)
+
+            // send records as a response
+      
+            res.send(recordset.recordset);
+           
+            var temp=JSON.parse(JSON.stringify(recordset.recordset));
+            console.log(temp[0].status);
+            console.log(recordset.recordset);
+
+           
+           
+            
+        });
+        
+    });
+
+    //sql.close();
+
+
+
+    /*var con = sql.createConnection({
+      host: "DESKTOP-AEA02TQ",
+      user: "sa",
+      password: "12345",
+      database: "Testdb"
+    });
+    
+    con.connect(function(err) {
+      if (err) throw err;
+      con.query("select * from tbl_registration", function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+      });
+    });*/
 
 
 
