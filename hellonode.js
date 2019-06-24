@@ -32,6 +32,23 @@ http.createServer(function (req, res) {
 var express = require('express');
 var app = express();
 
+////////////////////////////////////
+var sql = require("mssql");
+
+// config for your database
+var config = {
+    user: 'admin',
+    password: 'qwertyuiop12#$',
+    server: 'sqldev.southeastasia.cloudapp.azure.com', 
+    database: 'lctpayment_dev_0_0_0_1' 
+};
+// connect to your database
+sql.connect(config, function (err) {
+    
+  if (err) console.log(err);
+
+});
+////////////////////////////////////
 // define routes here..
 
 
@@ -50,44 +67,23 @@ app.get('/', function (req, res) {
 
 
 app.get('/database', function (req, res) {
- // res.end('Hello boss!');
 
+    // create Request object
+    var request = new sql.Request();
+        
+    // query to the database and get the records
+    request.query('select paymentStatus as status, count(*) as value from lctpayment Group By  paymentStatus', function (err, recordset) {
+        
+        if (err) console.log(err)
 
-  var sql = require("mssql");
-
-    // config for your database
-    var config = {
-        user: 'sa',
-        password: '12345',
-        server: 'DESKTOP-AEA02TQ', 
-        database: 'Testdb' 
-    };
-
-    // connect to your database
-    sql.connect(config, function (err) {
-    
-        if (err) console.log(err);
-
-        // create Request object
-        var request = new sql.Request();
-           
-        // query to the database and get the records
-        request.query('select * from Datainput', function (err, recordset) {
-            
-            if (err) console.log(err)
-
-            // send records as a response
-      
-            res.send(recordset.recordset);
-           
-            var temp=JSON.parse(JSON.stringify(recordset.recordset));
-            console.log(temp[0].status);
-            console.log(recordset.recordset);
-
-           
-           
-            
-        });
+        // send records as a response
+  
+        res.send(recordset.recordset);
+        
+        var temp=JSON.parse(JSON.stringify(recordset.recordset));
+        console.log(temp[0].status);
+        console.log(recordset.recordset);     
+        
         
     });
 
@@ -95,20 +91,38 @@ app.get('/database', function (req, res) {
 
 
 
-    /*var con = sql.createConnection({
-      host: "DESKTOP-AEA02TQ",
-      user: "sa",
-      password: "12345",
-      database: "Testdb"
+    /*var mssql = require("mssql"); 
+    var dbConfig = {
+        user: 'admin',
+        password: 'qwertyuiop12#$',
+        server: 'sqldev.southeastasia.cloudapp.azure.com', 
+        database: 'lctpayment_dev_0_0_0_1'  
+    };
+
+    var connection = mssql.connect(dbConfig, function (err) {
+        if (err)
+            throw err; 
     });
+
+    module.exports = connection; 
+
+    // app.js 
+    var db = require("db"); 
+  
+
+    var request = new db.Request();
+    request.query('select paymentStatus as status, count(*) as value from lctpayment Group By  paymentStatus', function (err, recordset) {
+        if (err) 
+            return next(err);
+
+        res.send(recordset.recordset);
+        
+        var temp=JSON.parse(JSON.stringify(recordset.recordset));
+        console.log(temp[0].status);
+        console.log(recordset.recordset);    
+    }); */
     
-    con.connect(function(err) {
-      if (err) throw err;
-      con.query("select * from tbl_registration", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      });
-    });*/
+
 
 
 
