@@ -91,15 +91,110 @@ var app = angular.module("demo", []);
 
 				$scope.mybody = {
 					
-					"background-color" : jsonconfig[5].value
+					//"background-color" : jsonconfig[5].value
 					//"background-image": "Img/Back1.jpg"
 					
 				}
+
+
+
+				var inputdata=[];
+				var input=[];
+
+				for(var i=0;i<json.length;i++){
+					var strings=json[i].status+"("+json[i].value+")";
+					input.push(strings);
+					inputdata.push(json[i].value);
+				}
+
+				var cheight=jsonconfig[3].value;
+				var cwidth=jsonconfig[4].value;
+
+				var c = document.getElementById("myCanvas");
+				c.width=cwidth;
+				c.height=cheight;
+				var myChart = c.getContext("2d");
+				//var input=["payfail("+400+")","payinit","paysuccess","payreturn"];
+				
+
+					//myChart.scale(.1,.1);
+				
+				//let myChart = document.getElementById('myCanvas').getContext('2d');
+
+    		// Global Options
+				Chart.defaults.global.defaultFontFamily = jsonconfig[0].value;
+				Chart.defaults.global.defaultFontSize = jsonconfig[1].value;
+				Chart.defaults.global.defaultFontColor = jsonconfig[8].value;
+
+				let massPopChart = new Chart(myChart, {
+				type:jsonconfig[13].value, // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+				data:{
+					labels:input,
+					datasets:[{
+					label:'Population',
+					data:inputdata,
+					//backgroundColor:'green',
+					backgroundColor:[
+						'rgba(255, 99, 132, 0.6)',
+						'rgba(54, 162, 235, 0.6)',
+						'rgba(255, 206, 86, 0.6)',
+						'rgba(75, 192, 192, 0.6)',
+						'rgba(153, 102, 255, 0.6)',
+						'rgba(255, 159, 64, 0.6)',
+						'rgba(255, 99, 132, 0.6)',
+						'rgba(255, 12, 33, 0.6)',
+						'rgba(255, 50, 1, 0.6)',
+						'rgba(255, 1, 50, 0.6)',
+						'rgba(255, 153, 12, 0.6)',
+						'rgba(255, 12, 132, 0.6)',
+						'rgba(75, 255, 132, 0.6)',
+						'rgba(75, 99, 255, 0.6)',
+						'rgba(54, 12, 255, 0.6)',
+						'rgba(5, 120, 200, 0.6)',
+						'rgba(200, 50, 50, 0.6)',
+						'rgba(50, 255, 255, 0.6)'
+					],
+					borderWidth:1,
+					borderColor:'#777',
+					hoverBorderWidth:3,
+					hoverBorderColor:'#000'
+					}]
+				},
+				options:{
+					title:{
+					display:true,
+					text:'Data From Server In Graph',
+					},
+					legend:{
+					display:true,
+					position:'left',
+					labels:{
+						fontColor:'#000',
+						fontSize:15
+					},
+					
+					},
+					responsive: false,
+					maintainAspectRatio: false,
+					layout:{
+					padding:{
+						left:jsonconfig[9].value,
+						right:jsonconfig[10].value,
+						bottom:jsonconfig[11].value,
+						top:jsonconfig[12].value
+					}
+					},
+
+					tooltips:{
+					enabled:true
+					}
+				}
+				});
 				
 				//var json=JSON.parse($scope.datainput);
 				//console.log(json[0].status);
 
-				var n = $scope.givenNumber;
+				
 
 				var cheight=jsonconfig[3].value;
 				var cwidth=jsonconfig[4].value;
@@ -108,15 +203,15 @@ var app = angular.module("demo", []);
 				var newx;
 				var newy;
 				
-				for(var k=0;k<=1;k++){
+				/*for(var k=0;k<=1;k++){
 					var c = document.getElementById("myCanvas");
 					c.width=cwidth;
 					c.height=cheight;
 					
 					var ctx = c.getContext("2d");
 					ctx.clearRect(0, 0, cwidth, cheight);
-					console.log(cwidth);
-					console.log(cheight);
+					//console.log(cwidth);
+					//console.log(cheight);
 
 					/*var background = new Image();
 					background.src = "Img/Back1.jpg";
@@ -124,14 +219,14 @@ var app = angular.module("demo", []);
 					// Make sure the image is loaded first otherwise nothing will draw.
 					background.onload = function(){
 						ctx.drawImage(background,0,0);   
-					}*/
+					}
 
 
 					var maxwidth=0;
 					var maxvalue=0;
 					
 					ctx.scale(cwidth/1920,cheight/1080);
-					ctx.translate(newx,newy);
+					//ctx.translate(newx,newy);
 
 					//var verlegth=[];
 					var horlength=[];
@@ -171,13 +266,13 @@ var app = angular.module("demo", []);
 					}
 					
 					//console.log(maxvalue);
-					console.log(scaleing);
+					//console.log(scaleing);
 
 
 					var imagePaper = new Image();
 					imagePaper.src = "Img/Back2.jpg";
 
-					//imagePaper.onload = function(){
+					imagePaper.onload = function(){
 						vpix=80;
 						for(var i=0;i<json.length;i++){
 							var hpix=maxwidth+100+5; //horizontal pixel start at for bar
@@ -186,13 +281,13 @@ var app = angular.module("demo", []);
 							//scaleing=1;
 							nbar=((value)/barsize)/scaleing; //number of required bar
 							nbar=parseInt(nbar);
-							console.log(nbar)
+							//console.log(nbar)
 
 
 							
 							for(var j=0;j<nbar;j++){
-								//ctx.drawImage(imagePaper,hpix,vpix,barsize,barsize);
-								ctx.fillRect(hpix,vpix,barsize,barsize);
+								ctx.drawImage(imagePaper,hpix,vpix,barsize,barsize);
+								//ctx.fillRect(hpix,vpix,barsize,barsize);
 								hpix+=barsize*2;
 							}
 
@@ -200,11 +295,11 @@ var app = angular.module("demo", []);
 							horlength.push(hpix+75);
 							vpix+=100;
 						}
-					//}
+					}
 
 
 
-					console.log(horlength);
+					//console.log(horlength);
 					var maxhorlength=0;
 					for(var a=0;a<horlength.length;a++){
 						if(maxhorlength<Number(horlength[a])){
@@ -254,9 +349,9 @@ var app = angular.module("demo", []);
 				
 			
 				
-					console.log(verlegth);
+					//console.log(verlegth);
 				
-		}	
+				}*/	
 				
 			  
 			
