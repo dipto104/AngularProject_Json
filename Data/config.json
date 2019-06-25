@@ -1,6 +1,6 @@
 [
 {"type":"font_name","value":"lato"},
-{"type":"font_size","value":25},
+{"type":"global_font_size","value":15},
 {"type":"font_style","value":"normal"},
 {"type":"canvas_height","value":"500"},
 {"type":"canvas_width","value":"500"},
@@ -12,5 +12,8 @@
 {"type":"paddingright","value":0},
 {"type":"paddingbottom","value":0},
 {"type":"paddingtop","value":0},
-{"type":"charttype","value":"doughnut"}
+{"type":"charttype","value":"doughnut"},
+{"type":"legend_font_size","value":25},
+{"type":"legend_position","value":"right"},
+{"type":"legend_display","value":true}
 ]

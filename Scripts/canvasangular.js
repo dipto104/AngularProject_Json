@@ -166,11 +166,11 @@ var app = angular.module("demo", []);
 					text:'Data From Server In Graph',
 					},
 					legend:{
-					display:true,
-					position:'left',
+					display:jsonconfig[16].value,
+					position:jsonconfig[15].value,
 					labels:{
 						fontColor:'#000',
-						fontSize:15
+						fontSize:jsonconfig[14].value
 					},
 					
 					},
